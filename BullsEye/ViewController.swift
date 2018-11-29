@@ -21,5 +21,11 @@ class ViewController: UIViewController {
     }
 
 
+    @IBAction func showAlert(){
+        let alert=UIAlertController(title: "Hello Russia", message: "梅西上演帽子戏法拯救阿根廷", preferredStyle: .alert)
+        let action = UIAlertAction(title: "2018年不再无聊", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert,animated: true,completion: nil)
+    }
 }
 
