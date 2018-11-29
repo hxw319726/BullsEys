@@ -31,13 +31,9 @@ class ViewController: UIViewController {
     /// 显示滑块数值
     @IBAction func showAlert(){
         
-        var difference=currentValue-targetValue
-        if(difference){
-            difference=currentValue-targetValue
-        }else if(currentValue<targetValue){
-            difference=targetValue-currentValue
-        }else{
-            difference=0
+        var difference = currentValue - targetValue
+        if difference < 0 {
+            difference = difference * -1
         }
         
         let message="滑动条的当前数值是：\(currentValue)" +
