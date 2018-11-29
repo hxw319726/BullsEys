@@ -24,7 +24,28 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        startNewRound(sliderStarValue:50)
+        startNewGame()
+        //设置滑动条的外观
+//        let thumbImageNormal = UIImage(named: "SliderThumb-Normal")!
+        let thumbImageNormal = #imageLiteral(resourceName: "SliderThumb-Normal")
+        slider.setThumbImage(thumbImageNormal, for: .normal)
+        
+        let thumbImageHighlighted = UIImage(named: "SliderThumb-Highlighted")!
+        slider.setThumbImage(thumbImageHighlighted, for: .highlighted)
+        
+        let insets = UIEdgeInsets(top: 0, left: 14, bottom: 0, right: 14)
+        
+        let trackLeftImage = UIImage(named: "SliderTrackLeft")!
+        let trackLeftResizeable = trackLeftImage.resizableImage(withCapInsets: insets)
+        
+        slider.setMinimumTrackImage(trackLeftResizeable, for: .normal)
+        
+        let trackRightImage = UIImage(named: "SliderTrackRight")!
+        let trackRightResizeable = trackRightImage.resizableImage(withCapInsets: insets)
+        
+        slider.setMaximumTrackImage(trackRightResizeable, for: .normal)
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -70,8 +91,11 @@ class ViewController: UIViewController {
     ///
     /// - Parameter slider: 滑块数值
     @IBAction func slideMoved(slider:UISlider){
-//         print("滑动条的当前数值是： \(slider.value)")
         currentValue=lroundf(slider.value)
+    }
+    
+    @IBAction func startOver(){
+        startNewGame()
     }
 
     ///  开启新的游戏回合
@@ -90,6 +114,12 @@ class ViewController: UIViewController {
         targetLabel.text=String(targetValue)
         scoreLabel.text=String(score)
         roundLabel.text=String(round)
+    }
+    
+    func startNewGame(){
+        score=0
+        round=0
+        startNewRound(sliderStarValue: 50)
     }
 }
 
